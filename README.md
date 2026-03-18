@@ -82,3 +82,19 @@ terraform destroy
 1. [Google AI Studio](https://aistudio.google.com/) にアクセス
 2. 左メニュー「Get API key」→「APIキーを作成」
 3. 表示されたキーをコピーして `openclaw onboard` 実行時に入力
+
+---
+
+## Slackワークスペースへの接続
+
+下記を参考に、OpenClaw を Slack ワークスペースに接続してください。
+
+* https://zenn.dev/hisamitsu/articles/2da15f23f68020
+* https://note.com/aihigememo/n/nb273fcb423a0
+* https://zenn.dev/and_dot/articles/a3c7e1f9b02d48
+
+基本的には、下記の手順が必要です。
+* Slack API で適切な権限を付与してアプリを作成
+* 発行した Bot User OAuth Token と App Token を OpenClaw に設定
+* OpenClawをワークスペースにインストールし、OpenClawにメンション
+* OpenClaw側でPairingを完了

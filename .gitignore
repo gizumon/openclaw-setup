@@ -1,0 +1,7 @@
+# Claude settings
+*.local.*
+
+# Terraform settings
+terraform.tfvars
+.terraform
+*.tfstate*

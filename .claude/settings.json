@@ -1,0 +1,43 @@
+{
+    "permissions": {
+        "allow": [
+            "Edit",
+            "Read",
+            "Write",
+            "Grep",
+            "WebSearch",
+            "Bash(git diff:*)",
+            "Bash(git status)",
+            "Bash(git log:*)",
+            "Bash(git show:*)",
+            "Bash(git fetch:*)",
+            "Bash(git branch:*)"
+        ],
+        "ask": [
+            "Bash(git push:*)",
+            "Bash(git reset:*)",
+            "Bash(git merge:*)",
+            "Bash(git rebase:*)",
+            "Bash(git stash:*)",
+            "Bash(git cherry-pick:*)",
+            "Bash(git commit:*)",
+            "Bash(git checkout:*)",
+            "Bash(git add:*)",
+            "Bash(git switch:*)",
+            "Bash(curl:*)",
+            "Bash(terraform:*)",
+            "Bash(rm:*)"
+        ]
+    },
+    "env": {
+      "ENABLE_LSP_TOOL": "1",
+      "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+    },
+    "lsp": {
+      "go": { "command": "gopls" },
+      "typescript": { "command": "typescript-language-server", "args": ["--stdio"] },
+      "terraform": { "command": "terraform-ls", "args": ["serve"] },
+      "yaml": { "command": "yaml-language-server", "args": ["--stdio"] }
+    }
+}
+  

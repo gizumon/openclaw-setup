@@ -46,7 +46,7 @@ terraform apply
 
 ```bash
 gcloud compute ssh openclaw-vm \
-    --zone=asia-northeast1-a \
+    --zone=asia-northeast1-b \
     --tunnel-through-iap \
     --project=YOUR_PROJECT_ID
 ```

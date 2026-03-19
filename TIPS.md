@@ -8,9 +8,10 @@
 
 ```bash
 PROJECT_ID="your-project-id"
+ZONE="asia-northeast1-b"
 
-gcloud compute ssh openclaw-vm \
-  --zone=asia-northeast1-b \
+gcloud compute ssh "${INSTANCE_NAME}" \
+  --zone="${ZONE}" \
   --tunnel-through-iap \
   --project="${PROJECT_ID}"
 ```
@@ -22,10 +23,12 @@ gcloud compute ssh openclaw-vm \
 ```bash
 PROJECT_ID="your-project-id"
 PORT=18789
+INSTANCE_NAME="openclaw-vm"
+ZONE="asia-northeast1-b"
 
 # VMの${PORT}番をlocalhost:${PORT}にフォワード
-gcloud compute ssh openclaw-vm \
-  --zone=asia-northeast1-b \
+gcloud compute ssh "${INSTANCE_NAME}" \
+  --zone="${ZONE}" \
   --tunnel-through-iap \
   --project="${PROJECT_ID}" \
   -- -L "${PORT}:localhost:${PORT}" -N

@@ -8,3 +8,4 @@ variable "region" {
   type        = string
   default     = "asia-northeast1"
 }
+

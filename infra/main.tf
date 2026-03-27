@@ -58,18 +58,33 @@ resource "google_compute_firewall" "allow_iap_ssh" {
   source_ranges = ["35.235.240.0/20"] # IAPのIP帯域
 }
 
+# 外部から8080ポートへのアクセスを許可
+resource "google_compute_firewall" "allow_http_8080" {
+  name    = "allow-http-8080"
+  network = google_compute_network.vpc_network.id
+
+  allow {
+    protocol = "tcp"
+    ports    = ["8080"]
+  }
+
+  source_ranges = ["0.0.0.0/0"]
+  target_tags   = ["http-8080"]
+}
+
 # 4. VMインスタンス（外部IPなし）
 resource "google_compute_instance" "vm_instance" {
-  name         = "openclaw-vm"
-  # e2-micro (1GB) だと openclaw gateway がメモリ不足でクラッシュするため e2-small 以上が必要
-  machine_type             = "e2-small"
+  for_each     = local.instances
+  name         = each.key
+  machine_type = each.value.machine_type
   allow_stopping_for_update = true
   zone         = "${var.region}-b"
+  tags         = ["http-8080"]
 
   boot_disk {
     initialize_params {
       image = "ubuntu-os-cloud/ubuntu-2204-lts"
-      size  = 10
+      size  = 20
       type  = "pd-standard"
     }
   }
@@ -77,7 +92,7 @@ resource "google_compute_instance" "vm_instance" {
   network_interface {
     network    = google_compute_network.vpc_network.id
     subnetwork = google_compute_subnetwork.subnet.id
-    # access_config ブロックを書かないことで外部IPを付与しない
+    access_config {} # 外部IPを付与（エフェメラルIP）
   }
 
   metadata = {

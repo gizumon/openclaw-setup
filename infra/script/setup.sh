@@ -10,7 +10,8 @@ curl -fsSL https://deb.nodesource.com/setup_24.x | sudo -E bash -
 sudo apt install -y nodejs
 
 # OpenClaw のインストール
-sudo npm install -g openclaw@latest
+# latestバージョンはdashboardがエラーになる問題あり
+sudo npm install -g openclaw@2026.3.13
 
 # SSH ログイン時のメッセージを設定
 sudo tee /etc/motd > /dev/null <<'EOF'
